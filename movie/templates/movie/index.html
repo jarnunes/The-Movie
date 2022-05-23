@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} TheMovie {% endblock %}
+{% block container %}
+
+    <h2 class="h2 mb-3">Populares</h2>
+    <div class="row row-cols-1 row-cols-md-5 py-3 g-3 bg-light rounded">
+        <!-- Cards -->
+        {% for key, value in movies.items %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="image-container">
+                        <div class="image">
+                            <a href="{{ value.redirect_url }}" target="_blank">
+                                <img src="{{ value.poster_path }}" class="card-img-top"
+                                     alt="...">
+                            </a>
+                        </div>
+                        <div class="parent">
+                            <span class="view"><i class="bi bi-eye-fill"></i> {{ value.popularity }}</span>
+                            <span class="range"><i class="bi bi-star-fill"></i> {{ value.vote_average }}</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="#" class="hover"><h5 class="card-title">{{ value.title }}</h5></a>
+                        <div class="info-preview">
+                        <span data-bs-toggle="tooltip" aria-current="page" title="Diretor" data-bs-placement="right">
+                            <i class="bi bi-megaphone-fill"></i> Director Name
+                        </span>
+                            <span class="d-block"><i
+                                    class="bi bi-clock-fill"></i> {{ value.release_date }}</span>
+                            <span class="d-block">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ value.id }}"><i
+                                    class="bi bi-info-circle-fill"></i> Sinopse </a>
+                        </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal{{ value.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ value.title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {{ value.overview }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}

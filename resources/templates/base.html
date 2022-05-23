@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    {% include 'partial/_head.html' %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<main style="min-height: 100vh">
+    {% include 'partial/_header.html' %}
+
+    <div class="container mt-5">
+        {% block container %} {% endblock %}
+    </div>
+
+    {% include 'partial/_footer.html' %}
+</main>
+</body>
+</html>
