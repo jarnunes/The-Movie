@@ -2,18 +2,33 @@ from movie.models import Configuracao
 
 
 def get_api_key() -> str:
-    """
-    Function to get API Key on database
+    r"""
+    Returns API Key from database
+
     :return: str
     """
-    # api = models.Configuracao.objects.get(identificador=settings.THE_MOVIE_DB_IDENTIFY)
-    # return api.api_key
     api = Configuracao.objects.all().first().api_key
     return f'api_key={api}'
 
 
+def get_base_url() -> str:
+    r"""
+    Returns base url from API https://api.themoviedb.org/3
+
+    :return: str
+    """
+    return 'https://api.themoviedb.org/3'
+
+
 def get_base_movie_url() -> str:
-    return 'https://api.themoviedb.org/3/movie'
+    return f'{get_base_url()}/movie'
+
+
+def get_url(category, url_parameters: dict) -> str:
+    url = f'{get_base_url()}/{category}?{get_api_key()}'
+    for k, v in url_parameters.items():
+        url += f'&{k}={v}'
+    return url
 
 
 def get_movie_url(category=None, movie_id=None) -> str:
@@ -39,6 +54,10 @@ def get_base_image_url() -> str:
 
 def get_movie_redirect_url():
     return 'https://www.themoviedb.org/movie'
+
+
+def get_search_url():
+    return f'{get_base_url()}/search'
 
 
 def get_movie_credits_url(movid_id: str):

@@ -3,7 +3,7 @@
 {% block container %}
 
     <h2 class="h2 mb-3">Populares</h2>
-    <div class="row row-cols-1 row-cols-md-5 py-3 g-3 bg-light rounded">
+    <div id="containerMoviesApp" class="row row-cols-1 row-cols-md-5 py-3 g-3 bg-light rounded">
         <!-- Cards -->
         {% for key, value in movies.items %}
             <div class="col">
@@ -45,7 +45,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">{{ value.title }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             {{ value.overview }}
@@ -54,7 +55,6 @@
                 </div>
             </div>
         {% endfor %}
-
     </div>
 
 
