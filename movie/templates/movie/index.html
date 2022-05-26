@@ -29,28 +29,11 @@
                         </span>
                             <span class="d-block"><i
                                     class="bi bi-clock-fill"></i> {{ value.release_date }}</span>
-                            <span class="d-block">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#modal{{ value.id }}"><i
-                                    class="bi bi-info-circle-fill"></i> Sinopse </a>
-                        </span>
+                            <span class="d-block even-modal" id="{{ value.id }}" style="cursor: pointer">
+                                <i class="bi bi-info-circle-fill"></i> Sinopse
+                            </span>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="modal{{ value.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ value.title }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            {{ value.overview }}
-                        </div>
                     </div>
                 </div>
             </div>

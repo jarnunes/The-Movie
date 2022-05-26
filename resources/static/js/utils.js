@@ -27,7 +27,9 @@ class Utils {
         try {
             let childElement = document.createElement(tagName);
             childElement.id = elementId
-            childElement.classList.add(...classList)
+            if (classList != null) {
+                childElement.classList.add(...classList)
+            }
             childElement.innerHTML = html
             if (idContainer != null && this.existsElement(idContainer)) {
                 document.getElementById(idContainer).appendChild(childElement)
@@ -50,7 +52,7 @@ class AjaxUtils {
         $(`#${idModal}`).modal('show');
     }
 
-    static closeModal(idModal, idContainerModal) {
+    static closeModal(idModal) {
         $(`#${idModal}`).modal('hide');
 
     }
@@ -101,15 +103,31 @@ class HtmlUtils {
                         </span>
                                 <span class="d-block"><i
                                         class="bi bi-clock-fill"></i> ${value.release_date}</span>
-                                <span class="d-block">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#modal${value.id}"><i
-                                    class="bi bi-info-circle-fill"></i> Sinopse </a>
-                        </span>
-                            </div>
-
+                            
+                            <span class="d-block even-modal" id="${value.id}" style="cursor: pointer">
+                                <i class="bi bi-info-circle-fill"></i> Sinopse
+                            </span>
+                           </div>
                         </div>
                     </div>
                 </div>
         `;
+    }
+
+    static getHtmlModal(json, idModal) {
+        return `<!-- Modal -->
+            <div class="modal fade" id="${idModal}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">${json.title}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()"></button>
+                        </div>
+                        <div class="modal-body">
+                            ${json.overview}
+                        </div>
+                    </div>
+                </div>
+            </div>`
     }
 }

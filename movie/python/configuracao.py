@@ -63,3 +63,6 @@ def get_search_url():
 def get_movie_credits_url(movid_id: str):
     return f'{get_base_movie_url()}/{movid_id}/credits?{get_api_key()}'
     # https://api.themoviedb.org/3/movie/508947/credits?api_key=066727bb2b348791835788085316f6fe&language=en-US
+
+def get_movie(movie_id):
+    return f'{get_url("")}'

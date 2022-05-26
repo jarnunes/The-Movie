@@ -57,3 +57,9 @@ def search(query) -> dict:
     url_parameters = {"language": "en-US", "page": 1, "query": query}
     url = f'{configuracao.get_url("search/movie", url_parameters=url_parameters)}'
     return get_movies_json(__get_movies(url))
+
+
+def get_movie(movie_id):
+    param = f'movie/{movie_id}'
+    url = f'{configuracao.get_url(param, {})}'
+    return __get_movies(url)

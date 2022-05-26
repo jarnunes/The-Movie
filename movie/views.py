@@ -27,9 +27,17 @@ def search(request):
         if request.method == "POST":
             search_str = json.loads(request.body).get("searchText")
             search_result = themovie_api.search(search_str)
-            print(search_result)
             return JsonResponse({"data": search_result})
 
 
 def new_movies(request):
     ...
+
+
+def get_movie_info(request, _id):
+    if utils.is_ajax(request):
+        if request.method == 'GET':
+            movie_info = themovie_api.get_movie(_id)
+            print(movie_info)
+            return JsonResponse({"data": movie_info})
+    return HttpResponseBadRequest("<h2>Página não encontrada</h2>")
